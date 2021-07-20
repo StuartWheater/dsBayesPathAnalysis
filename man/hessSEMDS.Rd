@@ -4,18 +4,20 @@
 \alias{hessSEMDS}
 \title{Concatenates objects into a vector or list}
 \usage{
-hessSEMDS(x, chains, method, seed, iter)
+hessSEMDS(resource, infile, nIter, nChains, seed, method)
 }
 \arguments{
-\item{x}{a list which contains the the objects to concatenate.}
+\item{resource}{a resource which is used to access the data set.}
 
-\item{chains}{is the ...}
+\item{infile}{is the ...}
 
-\item{method}{is the ...}
+\item{nIter}{is the ...}
+
+\item{nChains}{is the ...}
 
 \item{seed}{is the ...}
 
-\item{iter}{is the ...}
+\item{method}{is the ...}
 }
 \value{
 a vector or list
