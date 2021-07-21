@@ -11,10 +11,10 @@
 #' @return a vector or list
 #' @author DataSHIELD Development Team
 #' @import rBSEM
+#' @import readr
 #' @export
 #'
 hessSEMDS <- function (resource, infile, nIter, nChains, seed, method) {
-
     if (! any(c('ShellResourceClient') %in% class(resource))) {
         stop("Resource need to be a 'ShellResourceClient'", call. = FALSE)
     }
@@ -22,10 +22,21 @@ hessSEMDS <- function (resource, infile, nIter, nChains, seed, method) {
     inFile  <- infile
     tempDir <- paste0(base::tempdir(), '/')
 
-    command.rhess_sem <- paste('/usr/bin/R', '-q', '-f', 'HESS_SEM_Wrapper.R', '--args', inFile, tempDir, nIter, nChains, seed, method, collapse = ' ', sep=' ')
-    print(command.rhess_sem)
+    command.args <- c('-q', '-f', '/opt/hess_sem/HESS_SEM_Wrapper.R', '--args', inFile, tempDir, nIter, nChains, seed, method)
+
+    res <- resource$exec('/usr/bin/R', command.args)
+
+    outs <- resource$exec('/bin/ls', tempDir)$output
+
+    outs <- outs[grep("_out.txt", outs)]
 
     output <- list()
+    for (out in outs) {
+       output[[substr(out, 1, nchar(out) - 8)]] <- readr::read_table(paste0(tempDir, '/', out), col_names = FALSE, na = "NA")
+    }
+
+    base::unlink(tempDir, recursive = TRUE)
+    resource$close()
 
     return(output)
 }

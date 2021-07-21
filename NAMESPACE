@@ -3,3 +3,4 @@
 export(hessSEM.assignDS)
 export(hessSEMDS)
 import(rBSEM)
+import(readr)
