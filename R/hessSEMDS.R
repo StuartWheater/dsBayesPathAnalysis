@@ -20,7 +20,7 @@ hessSEMDS <- function (resource, infile, nIter, nChains, seed, method) {
     }
 
     inFile  <- infile
-    tempDir <- base::tempdir()
+    tempDir <- paste0(base::tempdir(), '/')
 
     command.rhess_sem <- paste('/usr/bin/R', '-q', '-f', 'HESS_SEM_Wrapper.R', '--args', inFile, tempDir, nIter, nChains, seed, method, collapse = ' ', sep=' ')
     print(command.rhess_sem)
