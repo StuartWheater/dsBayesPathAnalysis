@@ -32,7 +32,7 @@ hessSEMDS <- function (resource, infile, nIter, nChains, seed, method) {
 
     output <- list()
     for (out in outs) {
-       output[[substr(out, 1, nchar(out) - 8)]] <- readr::read_table(paste0(tempDir, '/', out), col_names = FALSE, na = "NA")
+       output[[substr(out, nchar(inFile) - 2, nchar(out) - 8)]] <- readr::read_table(paste0(tempDir, '/', out), col_names = FALSE, na = "NA")
     }
 
     base::unlink(tempDir, recursive = TRUE)
