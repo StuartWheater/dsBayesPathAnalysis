@@ -4,14 +4,30 @@
 \alias{hessSEMDS}
 \title{Concatenates objects into a vector or list}
 \usage{
-hessSEMDS(resource, infile, nIter, nChains, seed, method)
+hessSEMDS(
+  resource,
+  infile,
+  autoAddIntercept,
+  gammaInit,
+  nIter,
+  burnin,
+  nChains,
+  seed,
+  method
+)
 }
 \arguments{
 \item{resource}{a resource which is used to access the data set.}
 
 \item{infile}{is the ...}
 
+\item{autoAddIntercept}{is the ...}
+
+\item{gammaInit}{is the ...}
+
 \item{nIter}{is the ...}
+
+\item{burnin}{is the ...}
 
 \item{nChains}{is the ...}
 

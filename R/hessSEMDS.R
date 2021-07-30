@@ -27,13 +27,10 @@ hessSEMDS <- function (resource, infile, autoAddIntercept, gammaInit, nIter, bur
 
     command.args <- c('-q', '-f', '/opt/hess_sem/HESS_SEM_Wrapper.R', '--args', inFile, tempDir, autoAddIntercept, gammaInit, nIter, burnin, nChains, seed, method)
 
-    print(command.args)
-
     res <- resource$exec('/usr/bin/R', command.args)
 
-    if (! identical(res, character(0))) {
-        stop(res, call. = FALSE)
-    }
+#    if (exists("error", where = res) && (length(res$error) != 0))
+#        stop(res$error[1], call. = FALSE)
 
     outs <- resource$exec('/bin/ls', tempDir)$output
 
