@@ -3,7 +3,10 @@
 #' @description This function is similar to the R base function 'c'.
 #' @details Unlike the R base function 'c' on vector or list of certain 
 #' @param resource a resource which is used to access the data set.
-#' @param infile is the ...
+#' @param inFile is the ...
+#' @param blockList is the name of ...
+#' @param varType is the name of...
+#' @param SEMGraph is the name of ...
 #' @param autoAddIntercept is the ...
 #' @param gammaInit is the ...
 #' @param nIter is the ...
@@ -17,15 +20,18 @@
 #' @import readr
 #' @export
 #'
-hessSEMDS <- function (resource, infile, autoAddIntercept, gammaInit, nIter, burnin, nChains, seed, method) {
+hessSEMDS <- function (resource, inFile, blockList, varType, SEMGraph, autoAddIntercept, gammaInit, nIter, burnin, nChains, seed, method) {
     if (! any(c('ShellResourceClient') %in% class(resource))) {
         stop("Resource need to be a 'ShellResourceClient'", call. = FALSE)
     }
 
-    inFile  <- infile
     tempDir <- paste0(base::tempdir(), '/')
 
-    command.args <- c('-q', '-f', '/opt/hess_sem/HESS_SEM_Wrapper.R', '--args', inFile, tempDir, autoAddIntercept, gammaInit, nIter, burnin, nChains, seed, method)
+    blockList.arg <- gsub("\\s", "", base::deparse(blockList, width.cutoff = 500L))
+    varType.arg   <- gsub("\\s", "", base::deparse(varType, width.cutoff = 500L))
+    SEMGraph.arg  <- gsub("\\s", "", base::deparse(SEMGraph, width.cutoff = 500L))
+
+    command.args <- c('-q', '-f', '/opt/hess_sem/HESS_SEM_Wrapper.R', '--args', inFile, tempDir, blockList.arg, varType.arg, SEMGraph.arg, autoAddIntercept, gammaInit, nIter, burnin, nChains, seed, method)
 
     res <- resource$exec('/usr/bin/R', command.args)
 

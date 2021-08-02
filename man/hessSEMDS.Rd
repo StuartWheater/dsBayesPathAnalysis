@@ -6,7 +6,10 @@
 \usage{
 hessSEMDS(
   resource,
-  infile,
+  inFile,
+  blockList,
+  varType,
+  SEMGraph,
   autoAddIntercept,
   gammaInit,
   nIter,
@@ -19,7 +22,13 @@ hessSEMDS(
 \arguments{
 \item{resource}{a resource which is used to access the data set.}
 
-\item{infile}{is the ...}
+\item{inFile}{is the ...}
+
+\item{blockList}{is the name of ...}
+
+\item{varType}{is the name of...}
+
+\item{SEMGraph}{is the name of ...}
 
 \item{autoAddIntercept}{is the ...}
 
