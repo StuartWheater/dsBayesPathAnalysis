@@ -16,7 +16,6 @@
 #' @param method is the ...
 #' @return a vector or list
 #' @author DataSHIELD Development Team
-#' @import rBSEM
 #' @import readr
 #' @export
 #'

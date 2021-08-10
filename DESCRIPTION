@@ -1,7 +1,7 @@
 Package: dsBayesPathAnalysis
 Title: DataSHIELD Bayes Path Analysis server-side R functions
 Description: DataSHIELD Bayes Path Analysis server-side R functions.
-Version: 0.1.3
+Version: 0.1.4
 Author: DataSHIELD Developers <datashield@newcastle.ac.uk>
 Maintainer: DataSHIELD Developers <datashield@newcastle.ac.uk>
 License: GPL-3

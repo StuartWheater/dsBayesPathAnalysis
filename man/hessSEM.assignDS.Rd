@@ -4,10 +4,45 @@
 \alias{hessSEM.assignDS}
 \title{Concatenates objects into a vector or list}
 \usage{
-hessSEM.assignDS(x)
+hessSEM.assignDS(
+  resource,
+  inFile,
+  blockList,
+  varType,
+  SEMGraph,
+  autoAddIntercept,
+  gammaInit,
+  nIter,
+  burnin,
+  nChains,
+  seed,
+  method
+)
 }
 \arguments{
-\item{x}{a list which contains the the objects to concatenate.}
+\item{resource}{a resource which is used to access the data set.}
+
+\item{inFile}{is the ...}
+
+\item{blockList}{is the name of ...}
+
+\item{varType}{is the name of...}
+
+\item{SEMGraph}{is the name of ...}
+
+\item{autoAddIntercept}{is the ...}
+
+\item{gammaInit}{is the ...}
+
+\item{nIter}{is the ...}
+
+\item{burnin}{is the ...}
+
+\item{nChains}{is the ...}
+
+\item{seed}{is the ...}
+
+\item{method}{is the ...}
 }
 \value{
 a vector or list
