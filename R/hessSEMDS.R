@@ -18,7 +18,7 @@
 #' @author DataSHIELD Development Team
 #' @import readr
 #' @export
-#'
+
 hessSEMDS <- function (resource, inFile, blockList, varType, SEMGraph, autoAddIntercept, gammaInit, nIter, burnin, nChains, seed, method) {
     if (! any(c('ShellResourceClient') %in% class(resource))) {
         stop("Resource need to be a 'ShellResourceClient'", call. = FALSE)
@@ -26,9 +26,9 @@ hessSEMDS <- function (resource, inFile, blockList, varType, SEMGraph, autoAddIn
 
     tempDir <- paste0(base::tempdir(), '/')
 
-    blockList.arg <- gsub("\\s", "", base::deparse(blockList, width.cutoff = 500L))
-    varType.arg   <- gsub("\\s", "", base::deparse(varType, width.cutoff = 500L))
-    SEMGraph.arg  <- gsub("\\s", "", base::deparse(SEMGraph, width.cutoff = 500L))
+    blockList.arg <- .textToHex(base::deparse(blockList, width.cutoff = 500L))
+    varType.arg   <- .textToHex(base::deparse(varType, width.cutoff = 500L))
+    SEMGraph.arg  <- .textToHex(base::deparse(SEMGraph, width.cutoff = 500L))
 
     command.args <- c('-q', '-f', '/opt/hess_sem/HESS_SEM_Wrapper.R', '--args', inFile, tempDir, blockList.arg, varType.arg, SEMGraph.arg, autoAddIntercept, gammaInit, nIter, burnin, nChains, seed, method)
 
@@ -50,4 +50,16 @@ hessSEMDS <- function (resource, inFile, blockList, varType, SEMGraph, autoAddIn
     resource$close()
 
     return(output)
+}
+
+.textToHex <- function(text) {
+    if (! is.null(text)) {
+        rawCharVec <- charToRaw(text)
+        hexCharVec <- format(rawCharVec, width = 2)
+        hexString  <- paste(format(hexCharVec, width = 2), sep = "", collapse = "")
+
+        return(hexString)
+    } else {
+        return(NULL)
+    }
 }

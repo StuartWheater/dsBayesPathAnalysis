@@ -1,3 +1,4 @@
+
 #!/usr/bin/R
 
 library("rBSEM")
@@ -8,11 +9,26 @@ if (length(args) != 12) {
     stop("Incorrect number of arguments", call. = TRUE)
 }
 
+blockList.expr <- "NULL"
+if (args[3] != "NULL") {
+    blockList.expr <- rawToChar(as.raw(strtoi(unlist(strsplit(gsub("(..)", "\\1 ", args[3]), " ")), base = 16L)))
+}
+
+varType.expr <- "NULL"
+if (args[4] != "NULL") {
+    varType.expr <- rawToChar(as.raw(strtoi(unlist(strsplit(gsub("(..)", "\\1 ", args[4]), " ")), base = 16L)))
+}
+
+SEMGraph.expr <- "NULL"
+if (args[5] != "NULL") {
+    SEMGraph.expr <- rawToChar(as.raw(strtoi(unlist(strsplit(gsub("(..)", "\\1 ", args[5]), " ")), base = 16L)))
+}
+
 inFile           <- args[1]
 outFilePath      <- args[2]
-blockList        <- base::eval(parse(text=args[3]))
-varType          <- base::eval(parse(text=args[4]))
-SEMGraph         <- base::eval(parse(text=args[5]))
+blockList        <- base::eval(parse(text=blockList.expr))
+varType          <- base::eval(parse(text=varType.expr))
+SEMGraph         <- base::eval(parse(text=SEMGraph.expr))
 autoAddIntercept <- as.logical(args[6])
 gammaInit        <- args[7]
 nIter            <- as.numeric(args[8])

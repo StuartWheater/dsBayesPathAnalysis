@@ -1,7 +1,7 @@
 Package: dsBayesPathAnalysis
 Title: DataSHIELD Bayes Path Analysis server-side R functions
 Description: DataSHIELD Bayes Path Analysis server-side R functions.
-Version: 0.1.4
+Version: 0.2.0-9003
 Author: DataSHIELD Developers <datashield@newcastle.ac.uk>
 Maintainer: DataSHIELD Developers <datashield@newcastle.ac.uk>
 License: GPL-3
@@ -12,4 +12,4 @@ AggregateMethods:
     hessSEMDS
 AssignMethods:
     hessSEM.assignDS
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
