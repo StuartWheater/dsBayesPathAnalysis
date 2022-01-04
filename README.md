@@ -32,3 +32,24 @@ install the dsBayesPathAnalysis package:
 > R -q -f scripts/deploy_package.R
 
 This script will build and remotely deploy the dsBayesPathAnalysis DataSHIELD package into the Opal server.
+
+Create a directory "tmp" within "/opt/hess_sem/" directory with permission bits of "777".
+
+### Increase Memory available to Rock
+
+Change /etc/default/rock to contain:
+
+JAVA_ARGS="-Xmx512M -XX:MaxPermSize=128M -XX:+UseG1GC"
+
+(May need to restart 'rock')
+
+### Create Resource
+
+Name of resource: "sem_data"
+Catagory:         "Commands"
+Type:             "Shell"
+Parameters:
+    Work directory: "/opt/hess_sem"
+    Shell commands:
+        Executable: "/bin/ls"
+        Executable: "/usr/bin/R"
